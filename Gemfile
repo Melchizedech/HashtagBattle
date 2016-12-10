@@ -32,12 +32,16 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# OAuth2 for API
+# OAuth2 for APIs
 gem 'doorkeeper'
+gem 'oauth2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
 end
 
 group :development do

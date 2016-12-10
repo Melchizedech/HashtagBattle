@@ -1,7 +1,7 @@
 class CreateTweets < ActiveRecord::Migration
   def change
     create_table :tweets, {id: false} do |t|
-      t.date :date
+      t.datetime :date
       t.integer :id
       t.references :hashtag, index: true, foreign_key: true
 

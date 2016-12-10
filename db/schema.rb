@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161210100756) do
+ActiveRecord::Schema.define(version: 20161210113221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20161210100756) do
   create_table "counts", force: :cascade do |t|
     t.integer  "battle_id"
     t.integer  "hashtag_id"
-    t.date     "last_refresh"
+    t.datetime "last_refresh"
     t.integer  "counter"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
@@ -35,6 +35,16 @@ ActiveRecord::Schema.define(version: 20161210100756) do
 
   add_index "counts", ["battle_id"], name: "index_counts_on_battle_id", using: :btree
   add_index "counts", ["hashtag_id"], name: "index_counts_on_hashtag_id", using: :btree
+
+  create_table "daily_hashtag_counts", force: :cascade do |t|
+    t.integer  "hashtag_id"
+    t.integer  "count"
+    t.datetime "last_refresh"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "daily_hashtag_counts", ["hashtag_id"], name: "index_daily_hashtag_counts_on_hashtag_id", using: :btree
 
   create_table "hashtags", force: :cascade do |t|
     t.string   "name"
@@ -84,7 +94,7 @@ ActiveRecord::Schema.define(version: 20161210100756) do
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
 
   create_table "tweets", id: false, force: :cascade do |t|
-    t.date     "date"
+    t.datetime "date"
     t.integer  "id",         null: false
     t.integer  "hashtag_id", null: false
     t.datetime "created_at", null: false
@@ -95,13 +105,15 @@ ActiveRecord::Schema.define(version: 20161210100756) do
 
   create_table "users", force: :cascade do |t|
     t.string   "mail"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "access_token"
   end
 
   add_foreign_key "battles", "users"
   add_foreign_key "counts", "battles"
   add_foreign_key "counts", "hashtags"
+  add_foreign_key "daily_hashtag_counts", "hashtags"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "tweets", "hashtags"
