@@ -25,7 +25,6 @@ RSpec.describe Hashtag, :type => :model do
     expect(hashtag.get_count_between(before: 3.days.ago, now: Time.now)).to be(0)
 
     5.times { create(:old_hashtag_count, hashtag: hashtag) }
-    Rails.logger.debug("HEYO: #{hashtag.daily_hashtag_counts.inspect}")
     expect(hashtag.get_count_between(before: 3.days.ago, now: Time.now)).to be(300)
     expect(hashtag.get_count_between(before: 5.days.ago, now: 2.days.ago)).to be(400)
   end
@@ -34,16 +33,14 @@ RSpec.describe Hashtag, :type => :model do
     hashtag = create(:hashtag)
 
     expect(hashtag.get_count_between).to be(0)
-    Rails.logger.debug("HASHTAG: #{hashtag.daily_hashtag_counts.inspect}")
     hashtag.update_count(count: 5)
-    Rails.logger.debug("HASHTAG: #{hashtag.inspect}")
-    Rails.logger.debug("HASHTAG: #{hashtag.daily_hashtag_counts.inspect}")
+    hashtag.reload
     expect(hashtag.get_count_between).to be(5)
     hashtag.update_count(count: 15)
     expect(hashtag.get_count_between).to be(15)
 
     hashtag.update_count(count: 5, at: Date.yesterday.noon)
-    expect(hashtag.get_count_between).to be(5)
+    expect(hashtag.get_count_between).to be(15)
     expect(hashtag.get_count_between(before: Date.yesterday.beginning_of_day)).to be(20)
 
   end
