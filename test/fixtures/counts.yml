@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  battle_id: 
+  hashtag_id: 
+  last_refresh: 2016-12-10
+  counter: 1
+
+two:
+  battle_id: 
+  hashtag_id: 
+  last_refresh: 2016-12-10
+  counter: 1
