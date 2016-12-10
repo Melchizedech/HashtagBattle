@@ -34,7 +34,6 @@ RSpec.describe Hashtag, :type => :model do
 
     expect(hashtag.get_count_between).to be(0)
     hashtag.update_count(count: 5)
-    hashtag.reload
     expect(hashtag.get_count_between).to be(5)
     hashtag.update_count(count: 15)
     expect(hashtag.get_count_between).to be(15)

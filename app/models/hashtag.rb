@@ -1,6 +1,5 @@
 class Hashtag < ActiveRecord::Base
-  has_many :counts
-  has_many :battles, through: :counts
+  has_many :battles
   has_many :daily_hashtag_counts
 
   validates_format_of :name, :with => /\A#[^\s[[:punct:]]]+\z/, message: 'must not contain punctuation nor whitespaces'
