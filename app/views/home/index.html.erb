@@ -1,0 +1,11 @@
+<h1>Welcome to Hashtag Battle - Hivebrite POC</h1>
+<% if @user %>
+  Hi <%= @user.mail %> !
+<% else %>
+  <%= link_to("Sign in", 'login') %>
+<% end %>
+
+
+<% @battles.each do |battle| %>
+  <%= battle.hashtags.inspect %>
+<% end %> 

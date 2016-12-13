@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 20161210113221) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "access_token"
+    t.string   "sid"
   end
 
   add_foreign_key "battles", "users"
