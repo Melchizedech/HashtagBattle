@@ -1,0 +1,12 @@
+<%= form_for @battle, url: {action: :create} do |f| %>
+  Hashtags :
+  <ul>
+    <%= f.fields_for :hashtags do |hashtag_form| %>
+      <li>
+        <%= hashtag_form.label :name %>
+        <%= hashtag_form.text_field :name %>
+      </li>
+    <% end %>
+  </ul>
+  <%= submit_tag %>
+<% end %>

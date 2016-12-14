@@ -24,17 +24,13 @@ ActiveRecord::Schema.define(version: 20161210113221) do
 
   add_index "battles", ["user_id"], name: "index_battles_on_user_id", using: :btree
 
-  create_table "counts", force: :cascade do |t|
-    t.integer  "battle_id"
-    t.integer  "hashtag_id"
-    t.datetime "last_refresh"
-    t.integer  "counter"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+  create_table "battles_hashtags", id: false, force: :cascade do |t|
+    t.integer "battle_id"
+    t.integer "hashtag_id"
   end
 
-  add_index "counts", ["battle_id"], name: "index_counts_on_battle_id", using: :btree
-  add_index "counts", ["hashtag_id"], name: "index_counts_on_hashtag_id", using: :btree
+  add_index "battles_hashtags", ["battle_id"], name: "index_battles_hashtags_on_battle_id", using: :btree
+  add_index "battles_hashtags", ["hashtag_id"], name: "index_battles_hashtags_on_hashtag_id", using: :btree
 
   create_table "daily_hashtag_counts", force: :cascade do |t|
     t.integer  "hashtag_id"
@@ -93,16 +89,6 @@ ActiveRecord::Schema.define(version: 20161210113221) do
 
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
 
-  create_table "tweets", id: false, force: :cascade do |t|
-    t.datetime "date"
-    t.integer  "id",         null: false
-    t.integer  "hashtag_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "tweets", ["hashtag_id"], name: "index_tweets_on_hashtag_id", using: :btree
-
   create_table "users", force: :cascade do |t|
     t.string   "mail"
     t.datetime "created_at",   null: false
@@ -112,10 +98,7 @@ ActiveRecord::Schema.define(version: 20161210113221) do
   end
 
   add_foreign_key "battles", "users"
-  add_foreign_key "counts", "battles"
-  add_foreign_key "counts", "hashtags"
   add_foreign_key "daily_hashtag_counts", "hashtags"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
-  add_foreign_key "tweets", "hashtags"
 end

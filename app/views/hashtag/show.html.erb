@@ -1,0 +1,11 @@
+<h2>Hashtag <%= @hashtag.name%></h2>
+
+<p>Overall count since <%= @hashtag.created_at.strftime("%m/%d/%y") %> : <%= @hashtag.get_total_count %></p>
+<p>Day by Day evolution :</p>
+<ul>
+<% @hashtag.daily_hashtag_counts.each do |count| %>
+  <li>
+    <%= count.last_refresh.strftime("%m/%d/%y") %> - <%= count.count %> tweets
+  </li>
+<% end %>
+</ul>

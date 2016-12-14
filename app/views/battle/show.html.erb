@@ -1,0 +1,7 @@
+<h2>Displaying Battle <%= @battle.id %></h2>
+
+<ul>
+<% @battle.hashtags.each do |hashtag| %>
+  <li>Hashtag <%= hashtag.name %> has <%= hashtag.get_count_between(before: @battle.created_at) %> points.</li>
+<% end %>
+</ul>

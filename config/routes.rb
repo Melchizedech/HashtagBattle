@@ -1,14 +1,21 @@
 Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+  use_doorkeeper
 
   # You can have the root of your site routed with "root"
   root 'home#index'
-  get '/login', to: 'user#login'
-  get '/logout', to: 'user#logout'
 
-  post '/user/callback', to: 'user#callback'
-  get '/login/verify', to: 'user#verify'
+  get '/login', to: 'home#login'
+  get '/logout', to: 'home#logout'
+
+  get '/load', to: 'home#load'
+  post '/user/callback', to: 'home#callback'
+  get '/login/verify', to: 'home#verify'
+
+  resources :battle
+  resources :hashtag
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

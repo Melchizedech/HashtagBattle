@@ -6,6 +6,8 @@
 <% end %>
 
 
+<%= link_to "Create a battle", controller: :battle, action: :new %>
+
 <% @battles.each do |battle| %>
   <%= battle.hashtags.inspect %>
 <% end %> 

@@ -8,6 +8,26 @@
 </head>
 <body>
 
+<nav class="navbar navbar-inverse">
+  <div class="container">
+  <div class="navbar-header">
+    <%= link_to "HashtagBattle-POC", root_path, :class => "navbar-brand" %>
+  </div>
+  <div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav navbar-left">
+      <li><%= link_to "Battles", battle_index_path %></li>
+      <li><%= link_to "Hashtags", hashtag_index_path %></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <% if @user %>
+        <li><%= link_to @user.mail, '#' %></li>
+        <li><%= link_to 'Log out', 'logout' %></li>
+      <% else %>
+        <li><%= link_to 'Sign in with Twitter', 'login' %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
 <%= yield %>
 
 <% flash.each do |key, value| %>

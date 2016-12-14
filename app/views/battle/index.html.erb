@@ -1,0 +1,7 @@
+<h2>Battles</h2>
+
+<ul>
+<% @battles.each do |battle| %>
+  <li><%= link_to "Battle \##{battle.id}", battle_path(battle)%></li>
+<% end %>
+</ul>
