@@ -1,7 +1,24 @@
 <h2>Displaying Battle <%= @battle.id %></h2>
 
-<ul>
-<% @battle.hashtags.each do |hashtag| %>
+<% @battle.hashtags.each_with_index do |hashtag| %>
   <li>Hashtag <%= hashtag.name %> has <%= hashtag.get_count_between(before: @battle.created_at) %> points.</li>
 <% end %>
 </ul>
+
+<% if @sum > 0 %>
+  <div class="progress" style="width:80%">
+  <% index = 0 %>
+  <% @results.each do |hashtag_name, count| %>
+    <div class="progress-bar progress-bar-<%= BattleHelper::PROGRESS_BAR_CLASSES[index] %>" role="progressbar" data-toggle="tooltip" title="<%= count %>" style="width:<%= (100*count)/@sum.to_f %>%">
+      <%= hashtag_name %> (<%= (100*count/@sum.to_f).round %>%)
+    </div>
+    <% index +=1 %>
+  <% end %>
+  </div>
+<% else %>
+  No data retrieved yet
+<% end %>
+
+ <script>
+  $('[data-toggle="tooltip"]').tooltip(); 
+</script>

@@ -69,8 +69,10 @@ class TwitterInterface
     
 
     # get the count of a Hashtag, using the tokens of 'user'
-    def query_hashtag(user, hashtag, date)
-      search_query = URI.encode('?q=' + hashtag + ' ' + '&since=' + date.strftime('%Y-%m-%d') + ' ' + '&until=' + date.tomorrow.strftime('%Y-%m-%d'))
+    def query_hashtag(user, hashtag, date, last_tweet_id)
+      search_query = '?q=' + hashtag + ' ' + '&since=' + date.strftime('%Y-%m-%d') + ' ' + '&until=' + date.tomorrow.strftime('%Y-%m-%d') + '&count=100'
+      search_query += '&since_id=' + last_tweet_id if last_tweet_id
+      search_query = URI.encode(search_query)
       base_uri = 'https://api.twitter.com/1.1/search/tweets.json'
 
       # see that now we use the app consumer variables
@@ -80,13 +82,14 @@ class TwitterInterface
       count = 0
       loop do
         result = query(tokens, base_uri+search_query)
-        break unless result['search_metadata'] && result['search_metadata']['count'] && result['search_metadata']['next_results']
-        count += result['search_metadata']['count']
+        break unless result['search_metadata'] && result['search_metadata']['count'] && result['search_metadata']['max_id']
+        count += result['statuses'].size
         search_query = result['search_metadata']['next_results']
-        break if result['search_metadata']['count'] == 0
+        last_tweet_id = result['search_metadata']['max_id']
+        break unless result['search_metadata']['next_results']
       end
 
-      count
+      [count, last_tweet_id]
     end
 
     # This is a sample Twitter API request to 

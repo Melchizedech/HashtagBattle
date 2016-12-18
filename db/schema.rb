@@ -35,9 +35,10 @@ ActiveRecord::Schema.define(version: 20161210113221) do
   create_table "daily_hashtag_counts", force: :cascade do |t|
     t.integer  "hashtag_id"
     t.integer  "count"
+    t.string   "last_tweet_id"
     t.datetime "last_refresh"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "daily_hashtag_counts", ["hashtag_id"], name: "index_daily_hashtag_counts_on_hashtag_id", using: :btree

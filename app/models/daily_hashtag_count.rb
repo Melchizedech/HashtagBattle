@@ -3,6 +3,6 @@ class DailyHashtagCount < ActiveRecord::Base
 
   # A count is fresh *enough* if it has been refreshed less than 5 minutes ago
   def is_fresh?(at: Time.now)
-    last_refresh && (last_refresh - at) < 5.minutes
+    last_refresh && (at - last_refresh) < 5.minutes
   end
 end
