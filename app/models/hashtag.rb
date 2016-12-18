@@ -3,7 +3,7 @@ class Hashtag < ActiveRecord::Base
   has_many :daily_hashtag_counts
 
   validates_format_of :name, :with => /[^\s[[:punct:]]]+/, message: 'Hashtag name must not contain punctuation nor whitespaces.'
-  validates_format_of :name, :with => /\A#\z/, message: 'Hashtag name must start with a \'#\'.'
+  validates_format_of :name, :with => /\A#/, message: 'Hashtag name must start with a \'#\'.'
 
   # Gets count of hashtag retrieved for all the data we've got
   # Sums all the daily count for the hashtag
