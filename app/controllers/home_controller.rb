@@ -6,21 +6,13 @@ class HomeController < ApplicationController
   end
 
   def login
-    session[:token] = TwitterSignIn.request_token
-    redirect_to TwitterSignIn.authenticate_url(session[:token])
-  end
-
-  def load
-    session[:user_id] = 4
-    @user = User.find(4)
-    render 'verify'
-  end
-
-  def verify
-    @token = session[:token]
+    session[:token] ||= TwitterSignIn.request_token
+    @request_url = TwitterSignIn.authenticate_url(session[:token])
+    @request_token = session[:token]
   end
 
   def callback
+    Rails.logger.info("PARMS : #{params.inspect}")
     token = TwitterSignIn.access_token(params["oauth_token"], params["oauth_verifier"])
     if token
       user_twitter = TwitterSignIn.verify_credentials(token)
@@ -29,10 +21,10 @@ class HomeController < ApplicationController
       @user.mail ||= user_twitter['screen_name']
       @user.save!
       session[:user_id] = @user.id
-      session[:token] = nil
     else 
       flash[:error] = "Did not get authorization to access Twitter account"
     end
+    session[:token] = nil
     redirect_to action: :index
   end  
 
