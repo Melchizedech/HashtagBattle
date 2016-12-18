@@ -68,14 +68,25 @@ class TwitterInterface
     end
     
 
-    def query_hashtag(access_token, access_secret_token, hashtag, date)
-      search_query = URI.encode('q=' + hashtag + ' ' + '&since=' + date.strftime('%Y-%m-%d') + ' ' + '&until=' + date.tomorrow.strftime('%Y-%m-%d'))
-      base_uri = 'https://api.twitter.com/1.1/search/tweets.json?'
+    # get the count of a Hashtag, using the tokens of 'user'
+    def query_hashtag(user, hashtag, date)
+      search_query = URI.encode('?q=' + hashtag + ' ' + '&since=' + date.strftime('%Y-%m-%d') + ' ' + '&until=' + date.tomorrow.strftime('%Y-%m-%d'))
+      base_uri = 'https://api.twitter.com/1.1/search/tweets.json'
 
       # see that now we use the app consumer variables
       # plus user access token variables to sign the request
-      tokens = { access_token: access_token, access_token_secret: access_token_secret }
-      query(tokens, base_uri+search_query)
+      tokens = { access_token: user.access_token, access_token_secret: user.secret_access_token }
+
+      count = 0
+      loop do
+        result = query(tokens, base_uri+search_query)
+        break unless result['search_metadata'] && result['search_metadata']['count'] && result['search_metadata']['next_results']
+        count += result['search_metadata']['count']
+        search_query = result['search_metadata']['next_results']
+        break if result['search_metadata']['count'] == 0
+      end
+
+      count
     end
 
     # This is a sample Twitter API request to 
@@ -125,7 +136,6 @@ class TwitterInterface
       # and you can assign it wherever you want
       # See https://github.com/laserlemon/simple_oauth
       req["Authorization"] = SimpleOAuth::Header.new(method, uri.to_s, params, oauth)
-      Rails.logger.info("Authg : #{req["Authorization"]}")
       http.request(req)
     end
 

@@ -30,7 +30,6 @@ class BattleController < ApplicationController
 
   def index
     @battles = current_user.battles
-    @battles.each { |b| b.update_hashtags }
   end
 
   private
