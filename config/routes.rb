@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'home#logout'
 
   get '/load', to: 'home#load'
-  post '/user/callback', to: 'home#callback'
+  post '/login/callback', to: 'home#callback'
   get '/login/verify', to: 'home#verify'
 
   resources :battle

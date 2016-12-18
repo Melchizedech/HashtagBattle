@@ -8,7 +8,6 @@ class TwitterSignIn
 
   class << self
     def configure
-      Rails.logger.info("TwitterSignIn configured")
       @oauth ||= YAML.load_file(TWITTER)
     end
 
