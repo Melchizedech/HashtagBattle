@@ -12,7 +12,6 @@ class HomeController < ApplicationController
   end
 
   def callback
-    Rails.logger.info("PARMS : #{params.inspect}")
     token = TwitterSignIn.access_token(params["oauth_token"], params["oauth_verifier"])
     if token
       user_twitter = TwitterSignIn.verify_credentials(token)

@@ -1,4 +1,9 @@
 <%= form_for @battle, url: {action: :create} do |f| %>
+  <% if @battle.errors['hashtags.name'] %>
+    <% @battle.errors['hashtags.name'].each do |error| %>
+      <li class="list-group-item list-group-item-danger"><%= error %></li>
+    <% end %>
+  <% end %>
   Hashtags :
   <ul>
     <%= f.fields_for :hashtags do |hashtag_form| %>
@@ -8,5 +13,5 @@
       </li>
     <% end %>
   </ul>
-  <%= submit_tag %>
+  <%= submit_tag 'Create battle !' %>
 <% end %>

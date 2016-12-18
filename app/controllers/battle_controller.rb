@@ -3,10 +3,10 @@ class BattleController < ApplicationController
 
   before_action :require_login
   def new
-    @battle = Battle.new params[:battle]
+    @battle = Battle.new 
     @battle.user = current_user
 
-    2.times do @battle.hashtags << Hashtag.new end if @battle.hashtags.empty?
+    2.times { @battle.hashtags.build }
   end
 
   def create
@@ -17,9 +17,9 @@ class BattleController < ApplicationController
     end
     @battle.save
     if @battle.valid?
-      redirect_to battle_path(@battle)
+      redirect_to @battle
     else
-      redirect_to battle_create_path(@battle)
+      render new_battle_path(@battle), alert: @battle.errors
     end
   end
 
