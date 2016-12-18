@@ -33,14 +33,22 @@ RSpec.describe Hashtag, :type => :model do
     hashtag = create(:hashtag)
 
     expect(hashtag.get_count_between).to be(0)
-    hashtag.update_count(count: 5)
+    hashtag.update_count(add: 5)
     expect(hashtag.get_count_between).to be(5)
-    hashtag.update_count(count: 15)
+    hashtag.update_count(add: 10)
     expect(hashtag.get_count_between).to be(15)
 
-    hashtag.update_count(count: 5, at: Date.yesterday.noon)
+    hashtag.update_count(add: 5, at: Date.yesterday.noon)
     expect(hashtag.get_count_between).to be(15)
     expect(hashtag.get_count_between(before: Date.yesterday.beginning_of_day)).to be(20)
+  end
+
+  it "get the right last tweet id" do
+    hashtag = create(:hashtag)
+    expect(hashtag.get_last_tweet_id).to be(nil)
+    create(:daily_hashtag_count, hashtag: hashtag)
+    expect(hashtag.get_last_tweet_id).to eq(hashtag.daily_hashtag_counts.first.last_tweet_id)
+    expect(hashtag.get_last_tweet_id(at: 3.days.ago)).to eq(nil)
 
   end
 end
