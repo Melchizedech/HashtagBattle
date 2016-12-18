@@ -22,7 +22,7 @@ class Hashtag < ActiveRecord::Base
   # Using battle's user credentials
   def update_count(user:, at: Time.now, count: 0)
     daily_count = daily_hashtag_counts.where("last_refresh between ? and ? and last_refresh < ?", at.beginning_of_day, at.end_of_day, at).first || DailyHashtagCount.new(hashtag: self)
-    return if (Time.now - daily_count.last_refresh) < 5.minutes
+    return if daily_count.last_refresh && (Time.now - daily_count.last_refresh) < 5.minutes
     count = TwitterInterface.query_hashtag(user, name, at)
     daily_count.last_refresh = at
     daily_count.count = count if count > daily_count.count
