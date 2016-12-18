@@ -91,9 +91,10 @@ ActiveRecord::Schema.define(version: 20161210113221) do
 
   create_table "users", force: :cascade do |t|
     t.string   "mail"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.string   "access_token"
+    t.string   "secret_access_token"
     t.string   "sid"
   end
 

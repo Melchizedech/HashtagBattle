@@ -6,24 +6,26 @@ class HomeController < ApplicationController
   end
 
   def login
-    session[:token] ||= TwitterSignIn.request_token
-    @request_url = TwitterSignIn.authenticate_url(session[:token])
-    @request_token = session[:token]
+    request_token, secret_request_token = TwitterInterface.request_token
+    session[:secret_request_token] = secret_request_token
+    @request_url = TwitterInterface.authenticate_url(request_token)
+    @request_token = request_token
   end
 
   def callback
-    token = TwitterSignIn.access_token(params["oauth_token"], params["oauth_verifier"])
-    if token
-      user_twitter = TwitterSignIn.verify_credentials(token)
+    access_token, secret_token = TwitterInterface.access_token(params["oauth_token"], session[:secret_request_token], params["oauth_verifier"])
+    user_twitter = TwitterInterface.verify_credentials(access_token, secret_token) if access_token
+    if user_twitter
       @user = User.find_or_initialize_by(sid: user_twitter['id_str'])
-      @user.access_token ||= token
       @user.mail ||= user_twitter['screen_name']
+      @user.access_token = access_token
+      @user.secret_access_token = secret_token
       @user.save!
       session[:user_id] = @user.id
     else 
       flash[:error] = "Did not get authorization to access Twitter account"
     end
-    session[:token] = nil
+    session[:secret_request_token] = nil
     redirect_to action: :index
   end  
 
