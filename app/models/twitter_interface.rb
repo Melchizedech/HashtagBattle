@@ -93,7 +93,7 @@ class TwitterInterface
       oauth[:token] = tokens[:access_token]
       oauth[:token_secret] = tokens[:access_token_secret]
 
-      TwitterInterface.request(
+      response = TwitterInterface.request(
         :get, 
         uri,
         {},
