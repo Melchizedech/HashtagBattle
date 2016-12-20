@@ -2,7 +2,7 @@ class HomeController < ApplicationController
 
   def index
     @user ||= (session[:user_id] && User.find(session[:user_id]))
-    @battles = @user.nil? ? [] : @user.battles 
+    @random_battle = @user.nil? ? nil : @user.battles.order("RANDOM()").limit(1).first
   end
 
   def login

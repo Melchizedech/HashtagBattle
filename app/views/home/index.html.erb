@@ -8,3 +8,7 @@
 
 <%= link_to "Create a battle", new_battle_path %>
 
+
+<% if @random_battle %>
+  <%= render partial: "battle/pie_chart", locals: { battle: @random_battle } %>
+<% end %>

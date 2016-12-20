@@ -2,25 +2,19 @@
 
 <% @battle.hashtags.each_with_index do |hashtag, index| %>
   <% count = hashtag.get_count_between(before: @battle.created_at) %>
-  <li>Hashtag <%= hashtag.name %> has <span id="hashtag-count-<%= hashtag.id %>"><%= pluralize(count, 'point')%></span>. <span id="hashtag-ajax-<%= hashtag.id %>"> (currently refreshing)</span></li>
+  <li>Hashtag <%= link_to hashtag.name, hashtag_path(hashtag) %> has <span id="hashtag-count-<%= hashtag.id %>"><%= pluralize(count, 'point')%></span>.</span></li>
 <% end %>
 </ul>
 
 
-<%= render "pie_chart", locals: { battle: @battle }%>
+<%= render partial: "pie_chart", locals: { battle: @battle } %>
 
- <script>
+<script>
   $('[data-toggle="tooltip"]').tooltip(); 
   $(document).ready(function () {
-    <% @battle.hashtags.each do |h| %>
+    <% @battle.hashtags.each do |hashtag| %>
       $.ajax({
-        url: "<%= url_for update_count_hashtag_for_battle_path(hashtag_id: h, battle_id: @battle) %>", success: function(result) {
-          $("#hashtag-count-<%= h.id %>").html(result)
-          $("#hashtag-ajax-<%= h.id %>").remove();
-          $("#progress-hashtag-<%= h.id %>").attr('title', result);
-        }, error: function(result) {
-          $("#hashtag-ajax-<%= h.id %>").replaceWith("(could not update count)");
-        }
+        url: "<%= url_for update_count_path(hashtag) %>"
       })
     <% end %>
   })

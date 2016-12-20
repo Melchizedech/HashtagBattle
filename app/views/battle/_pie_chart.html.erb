@@ -1,1 +1,1 @@
-<%= pie_chart @battle.hashtags.map { |h| [h.name, h.get_count_between(before: Time.now)] } %>
+<%= pie_chart pie_chart_data_path(battle), refresh: 200 %>
