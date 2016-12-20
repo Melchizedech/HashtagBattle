@@ -1,24 +1,27 @@
-<h2>Displaying Battle <%= @battle.id %></h2>
+<h2>Displaying Battle <%= @battle.display_name %></h2>
 
-<% @battle.hashtags.each_with_index do |hashtag| %>
-  <li>Hashtag <%= hashtag.name %> has <%= hashtag.get_count_between(before: @battle.created_at) %> points.</li>
+<% @battle.hashtags.each_with_index do |hashtag, index| %>
+  <% count = hashtag.get_count_between(before: @battle.created_at) %>
+  <li>Hashtag <%= hashtag.name %> has <span id="hashtag-count-<%= hashtag.id %>"><%= pluralize(count, 'point')%></span>. <span id="hashtag-ajax-<%= hashtag.id %>"> (currently refreshing)</span></li>
 <% end %>
 </ul>
 
-<% if @sum > 0 %>
-  <div class="progress" style="width:80%">
-  <% index = 0 %>
-  <% @results.each do |hashtag_name, count| %>
-    <div class="progress-bar progress-bar-<%= BattleHelper::PROGRESS_BAR_CLASSES[index] %>" role="progressbar" data-toggle="tooltip" title="<%= count %>" style="width:<%= (100*count)/@sum.to_f %>%">
-      <%= hashtag_name %> (<%= (100*count/@sum.to_f).round %>%)
-    </div>
-    <% index +=1 %>
-  <% end %>
-  </div>
-<% else %>
-  No data retrieved yet
-<% end %>
+
+<%= render "pie_chart", locals: { battle: @battle }%>
 
  <script>
   $('[data-toggle="tooltip"]').tooltip(); 
+  $(document).ready(function () {
+    <% @battle.hashtags.each do |h| %>
+      $.ajax({
+        url: "<%= url_for update_count_hashtag_for_battle_path(hashtag_id: h, battle_id: @battle) %>", success: function(result) {
+          $("#hashtag-count-<%= h.id %>").html(result)
+          $("#hashtag-ajax-<%= h.id %>").remove();
+          $("#progress-hashtag-<%= h.id %>").attr('title', result);
+        }, error: function(result) {
+          $("#hashtag-ajax-<%= h.id %>").replaceWith("(could not update count)");
+        }
+      })
+    <% end %>
+  })
 </script>

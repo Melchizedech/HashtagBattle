@@ -3,6 +3,7 @@ class BattleController < ApplicationController
   include BattleHelper
 
   before_action :require_login
+
   def new
     @battle = Battle.new 
     @battle.user = current_user
@@ -26,12 +27,11 @@ class BattleController < ApplicationController
 
   def show
     @battle = Battle.find_by_user_id_and_id!(current_user.id, params[:id])
-    @battle.update_hashtags
     @sum = 0
     @results = {}
     @battle.hashtags.each do |h| 
       count = h.get_count_between(before: @battle.created_at) 
-      @results[h.name] = count
+      @results[h.name] = {count: count, id: h.id }
       @sum += count
     end
   end
@@ -39,6 +39,7 @@ class BattleController < ApplicationController
   def index
     @battles = current_user.battles
   end
+
 
   private
 

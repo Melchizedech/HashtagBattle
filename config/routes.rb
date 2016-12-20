@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :battle
   resources :hashtag
+  get '/battle/:battle_id/hashtag/update_count/:hashtag_id', to: 'hashtag#update_count_for_battle', as: 'update_count_hashtag_for_battle'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -11,4 +11,7 @@ class Battle < ActiveRecord::Base
     end
   end
 
+  def display_name
+    hashtags.map(&:name).join(' vs ')
+  end
 end
