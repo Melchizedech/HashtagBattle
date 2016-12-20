@@ -13,10 +13,10 @@ class HashtagController < ApplicationController
   end
 
   def update_count
-    @hashtag = current_user.hashtags.find(params[:id])
+    hashtag = Hashtag.find(params[:id])
     at = Time.now
-    count, last_tweet_id = TwitterInterface.query_hashtag(current_user, @hashtag.name, at, @hashtag.get_last_tweet_id)
-    @hashtag.update_count(add: count, last_tweet_id: last_tweet_id)
-    render layout: false
+    count, last_tweet_id = TwitterInterface.query_hashtag(current_user, hashtag.name, at, hashtag.get_last_tweet_id)
+    hashtag.update_count(add: count, last_tweet_id: last_tweet_id)
+    render :nothing => true, :status => 200, :content_type => 'text/html' 
   end
 end

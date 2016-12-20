@@ -42,7 +42,8 @@ class BattleController < ApplicationController
   end
 
   def pie_chart_data
-    render json: Battle.find(params[:battle_id]).hashtags.map { |h| [h.name, h.get_count_between(before: Time.now)] }
+    battle = Battle.find(params[:battle_id])
+    render json: battle.hashtags.map { |h| [h.name, h.get_count_between(before: battle.created_at)] }
   end
 
 

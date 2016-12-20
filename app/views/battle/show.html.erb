@@ -12,10 +12,12 @@
 <script>
   $('[data-toggle="tooltip"]').tooltip(); 
   $(document).ready(function () {
-    <% @battle.hashtags.each do |hashtag| %>
-      $.ajax({
-        url: "<%= url_for update_count_path(hashtag) %>"
-      })
-    <% end %>
+    window.setInterval(function(){
+      <% @battle.hashtags.each do |hashtag| %>
+        $.ajax({
+          url: "<%= url_for update_count_path(hashtag) %>"
+        })
+      <% end %>
+    }, 3*60*1000)
   })
 </script>
