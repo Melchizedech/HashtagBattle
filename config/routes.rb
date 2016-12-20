@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   resources :battle
   resources :hashtag
   get '/battle/:battle_id/chartdata', to: 'battle#pie_chart_data', as: 'pie_chart_data'
+  get '/battle/:battle_id/stackedlinechartdata', to: 'battle#stacked_line_chart_data', as: 'stacked_line_chart_data'
+  get '/hashtag/:hashtag_id/evolutionchartdata', to: 'hashtag#evolution_chart_data', as: 'evolution_chart_data'
   get '/hashtag/:id/update_count', to: 'hashtag#update_count', as: 'update_count'
 
   # Example of regular route:

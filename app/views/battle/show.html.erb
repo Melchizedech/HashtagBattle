@@ -1,5 +1,5 @@
 <h2>Displaying Battle <%= @battle.display_name %></h2>
-
+(since <%= @battle.created_at.strftime('%d-%m-%Y') %>)
 <% @battle.hashtags.each_with_index do |hashtag, index| %>
   <% count = hashtag.get_count_between(before: @battle.created_at) %>
   <li>Hashtag <%= link_to hashtag.name, hashtag_path(hashtag) %> has <span id="hashtag-count-<%= hashtag.id %>"><%= pluralize(count, 'point')%></span>.</span></li>
@@ -8,6 +8,8 @@
 
 
 <%= render partial: "pie_chart", locals: { battle: @battle } %>
+
+<%= render partial: "stacked_line_chart", locals: { battle: @battle } %>
 
 <script>
   $('[data-toggle="tooltip"]').tooltip(); 

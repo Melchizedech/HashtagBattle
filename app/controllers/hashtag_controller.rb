@@ -19,4 +19,12 @@ class HashtagController < ApplicationController
     hashtag.update_count(add: count, last_tweet_id: last_tweet_id)
     render :nothing => true, :status => 200, :content_type => 'text/html' 
   end
+
+  def evolution_chart_data
+    hashtag = Hashtag.find(params[:hashtag_id])
+    result = [hashtag.get_stacked_evolution_data(from: hashtag.created_at)]
+
+    render json: result
+  end
+
 end

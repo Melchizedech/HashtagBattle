@@ -22,6 +22,18 @@ class Hashtag < ActiveRecord::Base
     dhc.nil? ? nil : dhc.last_tweet_id
   end
 
+  def get_stacked_evolution_data(from: Date.today)
+    data = {}
+    data[:name] = name
+    data[:data] = []
+    daily_hashtag_counts.where(last_refresh: [from..Time.now]).each do |dhc|
+      data[:data] << [dhc.count, dhc.last_refresh.strftime('%d-%m-%Y')]
+    end
+    sum = 0
+    data[:data].map! { |c| [c[1], sum += c[0]] }.to_h
+    data
+  end
+
   # Sets the count for the hashtag at a given moment
   # Updates the daily_count or create one if it doesn't exist yet
   # Using battle's user credentials

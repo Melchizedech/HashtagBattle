@@ -46,6 +46,16 @@ class BattleController < ApplicationController
     render json: battle.hashtags.map { |h| [h.name, h.get_count_between(before: battle.created_at)] }
   end
 
+  def stacked_line_chart_data
+    battle = Battle.find(params[:battle_id])
+    data = []
+    battle.hashtags.each do |h|
+      data << h.get_stacked_evolution_data(from: battle.created_at)
+    end
+
+    render json: data
+  end
+
 
   private
 
