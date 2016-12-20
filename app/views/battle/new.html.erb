@@ -1,3 +1,6 @@
+<% if !@battle.errors[:hashtags].blank? %>
+  <p class="list-group-item list-group-item-danger"><%= @battle.errors[:hashtags].join(',') %></p> 
+<% end %>
 <%= form_for @battle, url: {action: :create} do |f| %>
   <% if @battle.errors['hashtags.name'] %>
     <% @battle.errors['hashtags.name'].each do |error| %>
@@ -6,12 +9,11 @@
   <% end %>
   Hashtags :
   <ul>
-    <%= f.fields_for :hashtags do |hashtag_form| %>
-      <li>
-        <%= hashtag_form.label :name %>
-        <%= hashtag_form.text_field :name %>
-      </li>
+    <%= f.fields_for :hashtags do |ff| %>
+      <%= render 'hashtag_fields', f: ff %>
     <% end %>
+    <p><%= link_to_add_association "Add hashtag", f, :hashtags %></p>
   </ul>
+
   <%= submit_tag 'Create battle !' %>
 <% end %>

@@ -15,10 +15,11 @@ class BattleController < ApplicationController
     @battle ||= Battle.new
     @battle.user = current_user
     params[:battle][:hashtags_attributes].each do |i, hashtag|
+      next if hashtag[:name].blank?
       @battle.hashtags << Hashtag.find_or_create_by(name: hashtag[:name])
     end
-    @battle.save
     if @battle.valid?
+      @battle.save
       redirect_to @battle
     else
       render new_battle_path(@battle), alert: @battle.errors
