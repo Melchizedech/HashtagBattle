@@ -9,21 +9,27 @@ class HashtagController < ApplicationController
 
   def show
     @hashtag = Hashtag.joins(:battles).where("battles.user_id = ? AND hashtags.id = ?", current_user.id, params[:id]).first
-    raise ActionController::RoutingError.new('Not Found') unless @hashtag
+    raise ActiveRecord::RecordNotFound.new('Not Found') unless @hashtag
   end
 
   def update_count
-    hashtag = Hashtag.find(params[:id])
+    hashtag = Hashtag.joins(:battles).where("battles.user_id = ? AND hashtags.id = ?", current_user.id, params[:id]).first
+    raise ActiveRecord::RecordNotFound.new('Not Found') unless hashtag    
     at = Time.now
+
     count, last_tweet_id = TwitterInterface.query_hashtag(current_user, hashtag.name, at, hashtag.get_last_tweet_id)
+
     hashtag.update_count(add: count, last_tweet_id: last_tweet_id)
-    render :nothing => true, :status => 200, :content_type => 'text/html' 
+    render nothing: true, status: 204, content_type: 'text/html' 
   end
 
   def evolution_chart_data
-    hashtag = Hashtag.find(params[:hashtag_id])
-    result = [hashtag.get_stacked_evolution_data(from: hashtag.created_at)]
+    hashtag = Hashtag.joins(:battles).where("battles.user_id = ? AND hashtags.id = ?", current_user.id, params[:hashtag_id]).first
 
+    raise ActiveRecord::RecordNotFound.new('Not Found') unless hashtag   
+
+    result = [hashtag.get_stacked_evolution_data(from: hashtag.created_at)]
+    
     render json: result
   end
 
