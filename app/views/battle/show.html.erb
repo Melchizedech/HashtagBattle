@@ -1,11 +1,4 @@
 <h2>Displaying Battle <%= @battle.display_name %></h2>
-(since <%= @battle.created_at.strftime('%d-%m-%Y') %>)
-<% @battle.hashtags.each_with_index do |hashtag, index| %>
-  <% count = hashtag.get_count_between(before: @battle.created_at) %>
-  <li>Hashtag <%= link_to hashtag.name, hashtag_path(hashtag) %> has <span id="hashtag-count-<%= hashtag.id %>"><%= pluralize(count, 'point')%></span>.</span></li>
-<% end %>
-</ul>
-
 
 <%= render partial: "pie_chart", locals: { battle: @battle } %>
 
@@ -14,12 +7,10 @@
 <script>
   $('[data-toggle="tooltip"]').tooltip(); 
   $(document).ready(function () {
-    window.setInterval(function(){
       <% @battle.hashtags.each do |hashtag| %>
         $.ajax({
           url: "<%= url_for update_count_path(hashtag) %>"
         })
       <% end %>
-    }, 3*60*1000)
   })
 </script>
