@@ -3,7 +3,8 @@ class HomeController < ApplicationController
 
   def index
     @user          = current_user
-    @random_battle = @user ? @user.battles.order("RANDOM()").limit(1).first : nil
+    set            = @user ? @user.battles : Battle.all
+    @random_battle = set.order("RANDOM()").limit(1).first
   end
 
   def login
