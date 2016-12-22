@@ -53,7 +53,6 @@ GEM
     coffee-script-source (1.11.1)
     commonjs (0.2.7)
     concurrent-ruby (1.0.2)
-    daybreak (0.3.0)
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
     doorkeeper (4.2.0)
@@ -214,7 +213,6 @@ DEPENDENCIES
   chartkick
   cocoon
   coffee-rails (~> 4.1.0)
-  daybreak
   doorkeeper
   factory_girl_rails
   jbuilder (~> 2.0)
