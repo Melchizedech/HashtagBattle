@@ -1,13 +1,3 @@
-<h2>Hashtags</h2>
+<h2>All Hashtags</h2>
 
-<ul>
-  <% @hashtags.each do |hashtag| %>
-    <li><%= link_to hashtag.name, hashtag_path(hashtag) %> used in
-      <ul>
-        <% hashtag.battles.each do |battle| %>
-          <li><%= link_to battle.display_name, battle_path(battle) %></li>
-        <% end %>
-      </ul>
-    </li>
-  <% end %>
-</ul>
+<%= render partial: 'hashtags' , locals: { hashtags: @hashtags } %>

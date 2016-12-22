@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   get '/hashtag/:hashtag_id/evolutionchartdata', to: 'hashtag#evolution_chart_data', as: 'evolution_chart_data'
   get '/hashtag/:id/update_count', to: 'hashtag#update_count', as: 'update_count'
+  get '/user/hashtag', to: 'hashtag#user_hashtags', as: 'hashtag_index_user'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

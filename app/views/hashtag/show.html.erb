@@ -11,3 +11,12 @@
 </ul>
 
 <%= render partial: "evolution_chart", locals: { hashtag: @hashtag } %>
+
+<script>
+  $('[data-toggle="tooltip"]').tooltip(); 
+  $(document).ready(function () {
+    $.ajax({
+      url: "<%= url_for update_count_path(@hashtag) %>"
+    })
+  })
+</script>
