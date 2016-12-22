@@ -3,15 +3,18 @@ class HashtagController < ApplicationController
 
   before_action :require_login
 
+  # List of hashtags used by logged user
   def index
     @hashtags = Hashtag.joins(:battles).where("battles.user_id = ?", current_user.id).includes(:battles).distinct
   end
 
+  # Get a hashtag used by logged user
   def show
     @hashtag = Hashtag.joins(:battles).where("battles.user_id = ? AND hashtags.id = ?", current_user.id, params[:id]).first
     raise ActiveRecord::RecordNotFound.new('Not Found') unless @hashtag
   end
 
+  # Update a hashtag using logged user credential
   def update_count
     hashtag = Hashtag.joins(:battles).where("battles.user_id = ? AND hashtags.id = ?", current_user.id, params[:id]).first
     raise ActiveRecord::RecordNotFound.new('Not Found') unless hashtag    
@@ -23,6 +26,7 @@ class HashtagController < ApplicationController
     render nothing: true, status: 204, content_type: 'text/html' 
   end
 
+  # Get Evolution Chart data of hashtag
   def evolution_chart_data
     hashtag = Hashtag.joins(:battles).where("battles.user_id = ? AND hashtags.id = ?", current_user.id, params[:hashtag_id]).first
 
