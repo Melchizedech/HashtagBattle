@@ -1,0 +1,5 @@
+<ul>
+<% battles.each do |battle| %>
+  <li><%= link_to battle.display_name, battle_path(battle)%></li>
+<% end %>
+</ul>

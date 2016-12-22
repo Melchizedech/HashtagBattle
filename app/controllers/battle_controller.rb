@@ -1,8 +1,9 @@
 class BattleController < ApplicationController
   include ApplicationHelper
 
-  before_action :require_login
+  before_action :require_login, only: [:new, :create, :user_battles]
 
+  # Instantiate new Battle with - by default - 2 hashtags
   def new
     @battle      = Battle.new 
     @battle.user = current_user
@@ -10,14 +11,16 @@ class BattleController < ApplicationController
     2.times { @battle.hashtags.build }
   end
 
+  # Create Battle with unique Hashtags
   def create
-    @battle      ||= Battle.new
+    @battle        = Battle.new
     @battle.user   = current_user
 
     params[:battle][:hashtags_attributes].each do |i, hashtag|
       next if hashtag[:name].blank?
       @battle.hashtags << Hashtag.find_or_create_by(name: hashtag[:name])
     end
+
     if @battle.save
       redirect_to @battle
     else
@@ -25,28 +28,26 @@ class BattleController < ApplicationController
     end
   end
 
+  # Gets a Battle
   def show
-    @battle  = current_user.battles.find(params[:id])
-    @results = {}
-
-    @battle.hashtags.each do |h| 
-      count            = h.get_count_between(before: @battle.created_at) 
-      @results[h.name] = {count: count, id: h.id }
-    end
+    @battle  = Battle.find(params[:id])
   end
 
+  # Show all Battles (Visitor view)
   def index
-    @battles = current_user.battles
+    @battles = Battle.all
   end
 
+  # Pie Chart data of the Battle
   def pie_chart_data
-    battle = current_user.battles.find(params[:battle_id])
+    battle = Battle.find(params[:battle_id])
     
     render json: battle.hashtags.map { |h| [h.name, h.get_count_between(before: battle.created_at)] }
   end
 
+  # Stacked Line Chart data of the Battle
   def stacked_line_chart_data
-    battle = current_user.battles.find(params[:battle_id])
+    battle = Battle.find(params[:battle_id])
     data   = []
 
     battle.hashtags.each do |h|
@@ -56,11 +57,9 @@ class BattleController < ApplicationController
     render json: data
   end
 
-
-  private
-
-  def battle_params
-    params.require(:battle).permit(hashtags_attributes: [:name])
+  # Battles of a user (Logged user)
+  def user_battles
+    @battles = current_user.battles
   end
 
 end

@@ -1,7 +1,3 @@
-<h2>Battles</h2>
+<h2>All battles</h2>
 
-<ul>
-<% @battles.each do |battle| %>
-  <li><%= link_to battle.display_name, battle_path(battle)%></li>
-<% end %>
-</ul>
+<%= render partial: 'battles', locals: { battles: @battles } %>
