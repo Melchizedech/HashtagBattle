@@ -6,6 +6,7 @@ class HashtagController < ApplicationController
   # List of hashtags
   def index
     @hashtags = Hashtag.all
+    @user = current_user
   end
 
   # List of hashtags used by logged user
@@ -13,9 +14,10 @@ class HashtagController < ApplicationController
     @hashtags = Hashtag.joins(:battles).where("battles.user_id = ?", current_user.id).includes(:battles).distinct
   end
 
-  # Get a hashtag used by logged user
+  # Get a hashtag used
   def show
     @hashtag = Hashtag.find(params[:id])
+    @user = current_user
   end
 
   # Update a hashtag using logged user credential

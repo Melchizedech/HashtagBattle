@@ -31,11 +31,18 @@ class BattleController < ApplicationController
   # Gets a Battle
   def show
     @battle  = Battle.find(params[:id])
+    @user = current_user
   end
 
   # Show all Battles (Visitor view)
   def index
     @battles = Battle.all
+    @user = current_user
+  end
+
+  # Battles of a user (Logged user)
+  def user_battles
+    @battles = current_user.battles
   end
 
   # Pie Chart data of the Battle
@@ -55,11 +62,6 @@ class BattleController < ApplicationController
     end
 
     render json: data
-  end
-
-  # Battles of a user (Logged user)
-  def user_battles
-    @battles = current_user.battles
   end
 
 end
