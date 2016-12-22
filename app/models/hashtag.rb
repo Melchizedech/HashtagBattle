@@ -26,10 +26,9 @@ class Hashtag < ActiveRecord::Base
     data        = {}
     data[:name] = name
     data[:data] = []
-    daily_hashtag_counts.where(last_refresh: [from..Time.now]).each do |dhc|
+    daily_hashtag_counts.where(last_refresh: [from..Time.now]).order(:last_refresh).each do |dhc|
       data[:data] << [dhc.count, dhc.last_refresh.strftime('%d-%m-%Y')]
     end
-    data[:data].sort! { |a, b| a[1] <=> b[1]}
     sum = 0
     data[:data].map! { |c| [c[1], sum += c[0]] }
     data

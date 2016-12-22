@@ -1,7 +1,7 @@
 class HashtagController < ApplicationController
   include ApplicationHelper
 
-  before_action :require_login, only: [:update_count, :user_hashtag]
+  before_action :require_login, only: [:update_count, :user_hashtags]
 
   # List of hashtags
   def index
