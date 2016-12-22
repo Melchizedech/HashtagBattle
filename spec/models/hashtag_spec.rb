@@ -49,6 +49,17 @@ RSpec.describe Hashtag, :type => :model do
     create(:daily_hashtag_count, hashtag: hashtag)
     expect(hashtag.get_last_tweet_id).to eq(hashtag.daily_hashtag_counts.first.last_tweet_id)
     expect(hashtag.get_last_tweet_id(at: 3.days.ago)).to eq(nil)
+  end
 
+  it "returns the hash of stacked count for hashtag" do
+    hashtag = create(:old_hashtag, created_at: 1.month.ago)
+    first_date = hashtag.daily_hashtag_counts.first.last_refresh
+    dhcs = []
+    5.times { |n| dhcs << [(first_date - (5-n-1).days).strftime('%d-%m-%Y'), (n+1)*100] }
+    expected = {name: hashtag.name, data: dhcs}
+    expect(hashtag.get_stacked_evolution_data(from: hashtag.created_at)).to eq(expected)
+
+    expected = {name: hashtag.name, data: [[first_date.strftime('%d-%m-%Y'), 100]]}
+    expect(hashtag.get_stacked_evolution_data(from: first_date)).to eq(expected)
   end
 end

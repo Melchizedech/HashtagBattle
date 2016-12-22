@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :hashtag do
-    name '#notfamous'
-
+    sequence(:name) { |n| '#notfamous' + n.to_s}
+    created_at Time.now
     factory :famous_hashtag do
       transient do
         daily_hashtag_counts_count 5
