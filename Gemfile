@@ -38,9 +38,9 @@ gem "twitter-bootstrap-rails"
 # OAuth2 for APIs
 gem 'doorkeeper'
 gem 'oauth2'
-gem 'simple_oauth'
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'twitter'
 
 # Heroku
 gem 'rails_12factor', group: :production

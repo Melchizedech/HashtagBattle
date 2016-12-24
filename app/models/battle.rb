@@ -7,8 +7,10 @@ class Battle < ActiveRecord::Base
   # Update Hashtags linked to Battle using User token
   def update_hashtags(at: Time.now)
     hashtags.each do |h|
-      count, last_tweet_id = TwitterInterface.query_hashtag(user, h.name, at, h.get_last_tweet_id)
-      h.update_count(add: count, last_tweet_id: last_tweet_id, at: at)
+       twitter = TwitterInterface.new(user)
+       count = twitter.fetch_tweet_count(h, at)
+       last_tweet_id = twitter.last_tweet_id
+       h.update_count(add: count, last_tweet_id: last_tweet_id, at: at)
     end
   end
 
