@@ -20,6 +20,11 @@ class HomeController < ApplicationController
     redirect_to action: :index
   end  
 
+  def failure
+    flash[:error] = 'Couldn\'t get authorized to access Twitter account'
+    redirect_to action: :index
+  end  
+
   def logout
     reset_session
     redirect_to action: :index
