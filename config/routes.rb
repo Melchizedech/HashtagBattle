@@ -6,12 +6,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
-  get '/login', to: 'home#login'
   get '/logout', to: 'home#logout'
-
-  get '/load', to: 'home#load'
-  post '/login/callback', to: 'home#callback'
-  get '/login/verify', to: 'home#verify'
 
   resources :battle
   resources :hashtag
@@ -22,7 +17,8 @@ Rails.application.routes.draw do
   get '/hashtag/:hashtag_id/evolutionchartdata', to: 'hashtag#evolution_chart_data', as: 'evolution_chart_data'
   get '/hashtag/:id/update_count', to: 'hashtag#update_count', as: 'update_count'
   get '/user/hashtag', to: 'hashtag#user_hashtags', as: 'hashtag_index_user'
-
+  get '/auth/twitter/callback', to: 'home#callback'
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

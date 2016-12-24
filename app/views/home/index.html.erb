@@ -3,7 +3,7 @@
 <% if @user %>
   Hi <%= @user.mail %> !
 <% else %>
-  <%= link_to("Sign in", 'login') %>
+  <%= link_to('Sign in via Twitter', twitter_auth_path) %>
 <% end %>
 
 

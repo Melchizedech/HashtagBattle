@@ -38,7 +38,7 @@
         <li><%= link_to @user.mail, '#' %></li>
         <li><%= link_to 'Log out', controller: :home, action: :logout %></li>
       <% else %>
-        <li><%= link_to 'Sign in with Twitter', controller: :home, action: :login %></li>
+        <li><%= link_to 'Sign in with Twitter', twitter_auth_path %></li>
       <% end %>
     </ul>
   </div>

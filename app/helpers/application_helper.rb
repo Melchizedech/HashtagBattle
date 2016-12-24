@@ -1,6 +1,10 @@
 module ApplicationHelper
   def require_login
-    redirect_to controller: :home, action: :login unless session[:user_id]
+    redirect_to ('/' + twitter_auth_path) unless session[:user_id]
+  end
+
+  def twitter_auth_path
+    'auth/twitter'
   end
 
   def current_user
