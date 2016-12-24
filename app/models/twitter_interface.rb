@@ -4,14 +4,10 @@
 class TwitterInterface
   attr_reader :last_tweet_id
 
-  def self.configure
-    @@oauth ||= YAML.load_file(TWITTER)
-  end
-
   def initialize(user)
     @client ||= Twitter::REST::Client.new do |config|
-      config.consumer_key        = @@oauth[:consumer_key]
-      config.consumer_secret     = @@oauth[:consumer_secret]
+      config.consumer_key        = ENV['TWITTER_KEY']
+      config.consumer_secret     = ENV['TWITTER_SECRET']
       config.access_token        = user.access_token
       config.access_token_secret = user.secret_access_token
     end
