@@ -1,0 +1,104 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.twitter.com/1.1/search/tweets.json?count=100&max_id&q=%23qwerty&since=2016-12-27&until=2016-12-28
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - TwitterRubyGem/5.17.0
+      Authorization:
+      - OAuth oauth_consumer_key="eYrDjV5OuUfE7X4flIqFIhH6A", oauth_nonce="0752bb12971d5ea2bf757cff18e42efe",
+        oauth_signature="MgPfEtrAkF%2FNhM3Xt35271W7Dgs%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1482811062", oauth_token="3230556507-lxKna7ogdDQaA94O5Kos7qSg6KcnolOc2ChJJP9",
+        oauth_version="1.0"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+      Content-Disposition:
+      - attachment; filename=json.json
+      Content-Length:
+      - '2410'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Tue, 27 Dec 2016 03:57:43 GMT
+      Expires:
+      - Tue, 31 Mar 1981 05:00:00 GMT
+      Last-Modified:
+      - Tue, 27 Dec 2016 03:57:42 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - tsa_o
+      Set-Cookie:
+      - guest_id=v1%3A148281106292888306; Domain=.twitter.com; Path=/; Expires=Thu,
+        27-Dec-2018 03:57:42 UTC
+      - lang=en; Path=/
+      Status:
+      - 200 OK
+      Strict-Transport-Security:
+      - max-age=631138519
+      X-Access-Level:
+      - read
+      X-Connection-Hash:
+      - 0b0b3a26530953637202dc470b5816be
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Rate-Limit-Limit:
+      - '180'
+      X-Rate-Limit-Remaining:
+      - '165'
+      X-Rate-Limit-Reset:
+      - '1482811591'
+      X-Response-Time:
+      - '167'
+      X-Transaction:
+      - '008848c8005686e0'
+      X-Twitter-Response-Tags:
+      - BouncerCompliant
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: '{"statuses":[{"created_at":"Tue Dec 27 03:56:51 +0000 2016","id":813594467437461506,"id_str":"813594467437461506","text":"Finished!
+        Elliot and Qwerty (@whoismrrobot @ItsRamiMalek) #mrrobot #elliotalderson #ramimalek
+        #qwerty #thatshirttho https:\/\/t.co\/pk0FGCRYtn","truncated":false,"entities":{"hashtags":[{"text":"mrrobot","indices":[58,66]},{"text":"elliotalderson","indices":[67,82]},{"text":"ramimalek","indices":[83,93]},{"text":"qwerty","indices":[94,101]},{"text":"thatshirttho","indices":[102,115]}],"symbols":[],"user_mentions":[{"screen_name":"whoismrrobot","name":"Mr.
+        Robot","id":3066551830,"id_str":"3066551830","indices":[29,42]},{"screen_name":"ItsRamiMalek","name":"Rami
+        Malek","id":763440894,"id_str":"763440894","indices":[43,56]}],"urls":[],"media":[{"id":813594462572056576,"id_str":"813594462572056576","indices":[116,139],"media_url":"http:\/\/pbs.twimg.com\/media\/C0p32mTVEAA8PH9.jpg","media_url_https":"https:\/\/pbs.twimg.com\/media\/C0p32mTVEAA8PH9.jpg","url":"https:\/\/t.co\/pk0FGCRYtn","display_url":"pic.twitter.com\/pk0FGCRYtn","expanded_url":"https:\/\/twitter.com\/ardnaxela0502\/status\/813594467437461506\/photo\/1","type":"photo","sizes":{"thumb":{"w":150,"h":150,"resize":"crop"},"small":{"w":489,"h":680,"resize":"fit"},"large":{"w":1112,"h":1547,"resize":"fit"},"medium":{"w":863,"h":1200,"resize":"fit"}}}]},"extended_entities":{"media":[{"id":813594462572056576,"id_str":"813594462572056576","indices":[116,139],"media_url":"http:\/\/pbs.twimg.com\/media\/C0p32mTVEAA8PH9.jpg","media_url_https":"https:\/\/pbs.twimg.com\/media\/C0p32mTVEAA8PH9.jpg","url":"https:\/\/t.co\/pk0FGCRYtn","display_url":"pic.twitter.com\/pk0FGCRYtn","expanded_url":"https:\/\/twitter.com\/ardnaxela0502\/status\/813594467437461506\/photo\/1","type":"photo","sizes":{"thumb":{"w":150,"h":150,"resize":"crop"},"small":{"w":489,"h":680,"resize":"fit"},"large":{"w":1112,"h":1547,"resize":"fit"},"medium":{"w":863,"h":1200,"resize":"fit"}}}]},"metadata":{"iso_language_code":"en","result_type":"recent"},"source":"\u003ca
+        href=\"http:\/\/twitter.com\/download\/iphone\" rel=\"nofollow\"\u003eTwitter
+        for iPhone\u003c\/a\u003e","in_reply_to_status_id":null,"in_reply_to_status_id_str":null,"in_reply_to_user_id":null,"in_reply_to_user_id_str":null,"in_reply_to_screen_name":null,"user":{"id":22575053,"id_str":"22575053","name":"Alex
+        Olivares","screen_name":"ardnaxela0502","location":"Pasadena, CA","description":"art
+        major who draws cartoons hoping to turn it into a career","url":"https:\/\/t.co\/Ec5kekzHwO","entities":{"url":{"urls":[{"url":"https:\/\/t.co\/Ec5kekzHwO","expanded_url":"http:\/\/seravilox.com","display_url":"seravilox.com","indices":[0,23]}]},"description":{"urls":[]}},"protected":false,"followers_count":120,"friends_count":238,"listed_count":0,"created_at":"Tue
+        Mar 03 02:56:45 +0000 2009","favourites_count":155,"utc_offset":-28800,"time_zone":"Pacific
+        Time (US & Canada)","geo_enabled":false,"verified":false,"statuses_count":8225,"lang":"en","contributors_enabled":false,"is_translator":false,"is_translation_enabled":false,"profile_background_color":"000000","profile_background_image_url":"http:\/\/pbs.twimg.com\/profile_background_images\/378800000093517908\/e9d7d1570876e90d6c8076cf9d82a885.jpeg","profile_background_image_url_https":"https:\/\/pbs.twimg.com\/profile_background_images\/378800000093517908\/e9d7d1570876e90d6c8076cf9d82a885.jpeg","profile_background_tile":true,"profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/755285113018028032\/g__yTEsM_normal.jpg","profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/755285113018028032\/g__yTEsM_normal.jpg","profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/22575053\/1468908980","profile_link_color":"57899E","profile_sidebar_border_color":"FFFFFF","profile_sidebar_fill_color":"302203","profile_text_color":"4586D1","profile_use_background_image":true,"has_extended_profile":true,"default_profile":false,"default_profile_image":false,"following":false,"follow_request_sent":false,"notifications":false,"translator_type":"none"},"geo":null,"coordinates":null,"place":null,"contributors":null,"is_quote_status":false,"retweet_count":0,"favorite_count":0,"favorited":false,"retweeted":false,"possibly_sensitive":false,"lang":"en"},{"created_at":"Tue
+        Dec 27 02:11:49 +0000 2016","id":813568034430418944,"id_str":"813568034430418944","text":"RT
+        @Pilos2014: Oiga Patr\u00f3n, queremos hacer huelga, pero que si usted no
+        quiere pues nada, no la hacemos.\n\nEsperamos su permiso...\n\n#qwerty\u2026","truncated":false,"entities":{"hashtags":[{"text":"qwerty","indices":[131,138]}],"symbols":[],"user_mentions":[{"screen_name":"Pilos2014","name":"Guifr\u00e9
+        el Pil\u00f3s","id":2302662138,"id_str":"2302662138","indices":[3,13]}],"urls":[]},"metadata":{"iso_language_code":"es","result_type":"recent"},"source":"\u003ca
+        href=\"http:\/\/twitter.com\" rel=\"nofollow\"\u003eTwitter Web Client\u003c\/a\u003e","in_reply_to_status_id":null,"in_reply_to_status_id_str":null,"in_reply_to_user_id":null,"in_reply_to_user_id_str":null,"in_reply_to_screen_name":null,"user":{"id":1492252518,"id_str":"1492252518","name":"QG","screen_name":"La__Vida__","location":"Catalunya","description":"","url":null,"entities":{"description":{"urls":[]}},"protected":false,"followers_count":3263,"friends_count":50,"listed_count":54,"created_at":"Sat
+        Jun 08 07:59:30 +0000 2013","favourites_count":360,"utc_offset":7200,"time_zone":"Athens","geo_enabled":false,"verified":false,"statuses_count":74675,"lang":"ca","contributors_enabled":false,"is_translator":false,"is_translation_enabled":false,"profile_background_color":"C0DEED","profile_background_image_url":"http:\/\/pbs.twimg.com\/profile_background_images\/538689835523780608\/FdkhUgVp.jpeg","profile_background_image_url_https":"https:\/\/pbs.twimg.com\/profile_background_images\/538689835523780608\/FdkhUgVp.jpeg","profile_background_tile":true,"profile_image_url":"http:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_1_normal.png","profile_image_url_https":"https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_1_normal.png","profile_link_color":"0084B4","profile_sidebar_border_color":"FFFFFF","profile_sidebar_fill_color":"DDEEF6","profile_text_color":"333333","profile_use_background_image":false,"has_extended_profile":false,"default_profile":false,"default_profile_image":true,"following":false,"follow_request_sent":false,"notifications":false,"translator_type":"regular"},"geo":null,"coordinates":null,"place":null,"contributors":null,"retweeted_status":{"created_at":"Sat
+        Dec 24 10:16:30 +0000 2016","id":812602844859736064,"id_str":"812602844859736064","text":"Oiga
+        Patr\u00f3n, queremos hacer huelga, pero que si usted no quiere pues nada,
+        no la hacemos.\n\nEsperamos su permiso...\u2026 https:\/\/t.co\/pjd8TqKzTI","truncated":true,"entities":{"hashtags":[],"symbols":[],"user_mentions":[],"urls":[{"url":"https:\/\/t.co\/pjd8TqKzTI","expanded_url":"https:\/\/twitter.com\/i\/web\/status\/812602844859736064","display_url":"twitter.com\/i\/web\/status\/8\u2026","indices":[116,139]}]},"metadata":{"iso_language_code":"es","result_type":"recent"},"source":"\u003ca
+        href=\"http:\/\/twitter.com\/download\/android\" rel=\"nofollow\"\u003eTwitter
+        for Android\u003c\/a\u003e","in_reply_to_status_id":null,"in_reply_to_status_id_str":null,"in_reply_to_user_id":null,"in_reply_to_user_id_str":null,"in_reply_to_screen_name":null,"user":{"id":2302662138,"id_str":"2302662138","name":"Guifr\u00e9
+        el Pil\u00f3s","screen_name":"Pilos2014","location":"CATALUNYA","description":"Guiffredus
+        Primus Comes Barchinone              \n\nPare de la P\u00e0tria Catalana                      \n\n@Albert_Rivera
+        i @jordievole m''han blocat: xk S\u00d3N EL MATEIX","url":null,"entities":{"description":{"urls":[]}},"protected":false,"followers_count":2840,"friends_count":1958,"listed_count":91,"created_at":"Tue
+        Jan 21 07:21:40 +0000 2014","favourites_count":21731,"utc_offset":3600,"time_zone":"Amsterdam","geo_enabled":false,"verified":false,"statuses_count":54156,"lang":"ca","contributors_enabled":false,"is_translator":false,"is_translation_enabled":false,"profile_background_color":"C0DEED","profile_background_image_url":"http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png","profile_background_image_url_https":"https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png","profile_background_tile":false,"profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/759407810526453760\/22TdsOmG_normal.jpg","profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/759407810526453760\/22TdsOmG_normal.jpg","profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/2302662138\/1426270908","profile_link_color":"1DA1F2","profile_sidebar_border_color":"C0DEED","profile_sidebar_fill_color":"DDEEF6","profile_text_color":"333333","profile_use_background_image":true,"has_extended_profile":false,"default_profile":true,"default_profile_image":false,"following":false,"follow_request_sent":false,"notifications":false,"translator_type":"none"},"geo":null,"coordinates":null,"place":null,"contributors":null,"is_quote_status":false,"retweet_count":308,"favorite_count":161,"favorited":false,"retweeted":false,"possibly_sensitive":false,"lang":"es"},"is_quote_status":false,"retweet_count":308,"favorite_count":0,"favorited":false,"retweeted":false,"lang":"es"}],"search_metadata":{"completed_in":0.046,"max_id":0,"max_id_str":"0","query":"%23qwerty+since%3A2016-12-27+until%3A2016-12-28","count":100,"since_id":0,"since_id_str":"0"}}'
+    http_version: 
+  recorded_at: Tue, 27 Dec 2016 03:57:43 GMT
+recorded_with: VCR 3.0.3
