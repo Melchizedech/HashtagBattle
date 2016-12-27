@@ -5,3 +5,4 @@ module SpecTestHelper
     user
   end
 end
+
