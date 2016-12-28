@@ -1,6 +1,0 @@
-<%= form_tag('/login/callback') do %>
-  <%= label_tag(:oauth_verifier, "Twitter Pin Code") %>
-  <%= text_field_tag(:oauth_verifier) %>
-  <%= hidden_field_tag(:oauth_token, request_token) %>
-  <%= submit_tag 'Verify pin code' %>
-<% end %>

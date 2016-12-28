@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
 
   ###         ATTRIBUTES         ###
-  ### STRING mail                ###
+  ### STRING name                ###
   ### STRING access_token        ###
   ### STRING secret_access_token ###
 end

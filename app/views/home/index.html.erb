@@ -1,7 +1,7 @@
 
 <h1>Welcome to Hashtag Battle - Hivebrite POC</h1>
 <% if @user %>
-  Hi <%= @user.mail %> !
+  Hi <%= @user.name %> !
 <% else %>
   <%= link_to('Sign in via Twitter', twitter_auth_path) %>
 <% end %>

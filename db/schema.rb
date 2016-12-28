@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161210113221) do
+ActiveRecord::Schema.define(version: 20161228061312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,12 +91,13 @@ ActiveRecord::Schema.define(version: 20161210113221) do
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "mail"
+    t.string   "name"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.string   "access_token"
     t.string   "secret_access_token"
-    t.string   "sid"
+    t.string   "uid"
+    t.string   "provider"
   end
 
   add_foreign_key "battles", "users"
