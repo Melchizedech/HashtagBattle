@@ -61,7 +61,7 @@ gem 'grape-swagger'
 gem 'grape-swagger-ui'
 gem 'grape-swagger-entity'
 gem 'grape-swagger-rails'
-
+gem 'grape-kaminari'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

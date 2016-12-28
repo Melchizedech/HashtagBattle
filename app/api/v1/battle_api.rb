@@ -1,13 +1,14 @@
 module V1
   class BattleAPI < Base
+
     desc 'End-points for Battle related stuff'
-    namespace :battle do
+    namespace :battles do
       desc 'Get all battles', {
-        success: Entities::BattleEntity,
+        success: Entities::SummarizedBattleEntity,
         failure: [[404, 'Battle not Found']]        
       }
       get do
-        present Battle.all, with: Entities::BattleEntity
+        present paginate(Battle.all), with: Entities::SummarizedBattleEntity
       end
 
       route_param :id do

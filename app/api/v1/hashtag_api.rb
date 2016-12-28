@@ -1,14 +1,14 @@
 module V1
   class HashtagAPI < Base
     desc 'End-points for Hashtag related stuff'
-    namespace :hashtag do
+    namespace :hashtags do
 
       desc 'Get all Hashtags', {
         success: Entities::HashtagEntity,
         failure: [[404, 'Hashtag not Found']]        
       }      
       get do
-        present Hashtag.all, with: Entities::HashtagEntity
+        present paginate(Hashtag.all), with: Entities::HashtagEntity
       end
 
       route_param :id do

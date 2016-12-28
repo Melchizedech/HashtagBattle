@@ -1,7 +1,8 @@
 module Entities
   class HashtagWithGlobalCountEntity < HashtagEntity
-    expose :total_count, documentation: { type: Integer, desc: 'Global count of the Hashtag since created'}do |h, options|
+    expose :total_count, documentation: { type: Integer, desc: 'Global count of the Hashtag since created' } do |h, options|
       h.get_total_count
     end
+    unexpose :daily_hashtag_counts
   end
 end
