@@ -22,6 +22,8 @@ class Hashtag < ActiveRecord::Base
     dhc.try(:last_tweet_id)
   end
 
+  # Returns representation of the Hashtag
+  # {name: Hashtag.name, data: [ [date: date1, count: count1].. ]}
   def get_stacked_evolution_data(from: Date.today)
     data        = {}
     data[:name] = name
@@ -29,7 +31,7 @@ class Hashtag < ActiveRecord::Base
     daily_hashtag_counts.where(last_refresh: [from..Time.now]).order(:last_refresh).each do |dhc|
       data[:data] << [dhc.count, dhc.last_refresh.strftime('%d-%m-%Y')]
     end
-    sum = 0
+    sum         = 0
     data[:data].map! { |c| [c[1], sum += c[0]] }
     data
   end

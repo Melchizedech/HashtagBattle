@@ -7,6 +7,7 @@ class HomeController < ApplicationController
     @random_battle = set.order("RANDOM()").limit(1).first
   end
 
+  # Callback of Twitter authentication
   def callback
     access_token               = request.env['omniauth.auth'][:credentials][:token]
     secret_token               = request.env['omniauth.auth'][:credentials][:secret]

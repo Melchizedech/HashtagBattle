@@ -6,7 +6,7 @@ RSpec.describe HashtagController, :type => :controller do
 
     it 'displays all hashtags (unlogged)' do
       get :index
-      5.times do create(:hashtag) end
+      5.times { create(:hashtag) }
       expect(response.status).to eq(200)
       expect(session[:user_id]).to be_nil   
       expect(assigns(:user)).to be(nil)
@@ -28,9 +28,9 @@ RSpec.describe HashtagController, :type => :controller do
     end
 
     it 'displays users hashtags' do
-      user = login      
+      user   = login      
       battle = build(:battle, user: user)
-      2.times do battle.hashtags << create(:hashtag) end
+      2.times { battle.hashtags << create(:hashtag) }
       battle.save
       get :user_hashtags
       expect(assigns(:hashtags).size).to be(2)
@@ -45,11 +45,11 @@ RSpec.describe HashtagController, :type => :controller do
     end
 
     it 'fails to display hashtag' do
-      expect { get :show, id: 'random_id'}.to raise_error(ActiveRecord::RecordNotFound)
+      expect { get :show, id: 'random_id' }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     it 'displays a user' do
-      h = create(:hashtag)
+      h    = create(:hashtag)
       user = login
       get :show, id: h.id
       expect(assigns(:user)).not_to be(nil)
@@ -60,12 +60,12 @@ RSpec.describe HashtagController, :type => :controller do
     it 'fails to update unlogged' do
       h = create(:hashtag)
       get :update_count, id: h.id
-      expect(response.status).to be(302)
+      expect(response.status).to be(401)
     end
 
     it 'fails to update unknown hashtag' do
       login
-      expect { get :update_count, id: 'random_id'}.to raise_error(ActiveRecord::RecordNotFound)
+      expect { get :update_count, id: 'random_id' }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     it 'updates count' do
@@ -86,7 +86,7 @@ RSpec.describe HashtagController, :type => :controller do
 
   describe 'evolution chart' do
     it 'fails to generate for unknown id' do
-      expect { get :evolution_chart_data, hashtag_id: 'random_id'}.to raise_error(ActiveRecord::RecordNotFound)
+      expect { get :evolution_chart_data, hashtag_id: 'random_id' }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     it 'generates empty evolution chart' do

@@ -1,28 +1,18 @@
+
+
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+HashtagBattle allows anyone to visualize the competitivity of 2 to 5 hashtags in the time.
+If you sign in with Twitter, you're allowed to create Battles and update those counts.
 
-Things you may want to cover:
+* Ruby version : tested on ruby 2.3.3p222
 
-* Ruby version
+* System dependencies : currently none (using default webrick server)
 
-* System dependencies
+* Configuration : run with environment variables TWITTER_KEY=your_app_key and TWITTER_SECRET=your_app_secret_key 
 
-* Configuration
+* Database creation/initialization : using PostgreSQL - just run rake db:create, that's all
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* How to run the test suite : just run 'bundle exec rspec'
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.

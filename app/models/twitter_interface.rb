@@ -16,11 +16,11 @@ class TwitterInterface
  
   def fetch_tweet_count(hashtag, at)
     @last_tweet_id = hashtag.get_last_tweet_id
-    results = @client.search(hashtag.name, 
-                             until: at.tomorrow.to_date,
-                             since: at.to_date,
-                             max_id: @last_tweet_id
-                            ).to_a
+    results        = @client.search(hashtag.name, 
+                                    until: at.tomorrow.to_date,
+                                    since: at.to_date,
+                                    max_id: @last_tweet_id
+                                   ).to_a
     @last_tweet_id = results.last.id if results.last
     results.size
   end

@@ -21,6 +21,7 @@ class BattleController < ApplicationController
       @battle.hashtags << Hashtag.find_or_create_by(name: hashtag[:name])
     end
 
+    # At least 2 valid hashtags - maximum 5
     if @battle.save
       redirect_to @battle
     else

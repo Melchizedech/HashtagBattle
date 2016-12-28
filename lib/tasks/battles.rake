@@ -2,7 +2,7 @@ namespace :battles do
 
   desc 'Update all hashtags using random parent User'
   task :update => :environment do
-    Battle.includes(:user, :hashtags).order("RANDOM()").all.each { |b| b.update_hashtags}
+    Battle.includes(:user, :hashtags).order("RANDOM()").all.each { |b| b.update_hashtags } 
   end
 
   desc 'Get final yesterday count for hashtags'
