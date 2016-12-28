@@ -13,7 +13,7 @@ class HomeController < ApplicationController
     secret_token               = request.env['omniauth.auth'][:credentials][:secret]
     twitter_uuid               = request.env['omniauth.auth'][:uid]
     @user                      = User.find_or_initialize_by(sid: twitter_uuid)
-    @user.mail               ||= request.env['omniauth.auth'][:info][:name]
+    @user.name               ||= request.env['omniauth.auth'][:info][:name]
     @user.access_token         = access_token
     @user.secret_access_token  = secret_token
     @user.save!
