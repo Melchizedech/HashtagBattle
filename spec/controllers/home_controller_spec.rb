@@ -63,4 +63,17 @@ RSpec.describe HomeController, :type => :controller do
       expect(response).to redirect_to :root
     end
   end
+
+  describe 'Logout' do
+
+    it 'Should reset session' do
+      get :logout
+      expect(session[:user_id]).to be_nil
+    end    
+
+    it 'Should redirect to index' do
+      get :logout
+      expect(response).to redirect_to :root
+    end
+  end
 end

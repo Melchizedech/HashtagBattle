@@ -24,6 +24,7 @@ class HashtagController < ApplicationController
   def update_count
     hashtag = Hashtag.find(params[:id])
     at = Time.now
+    return head :unauthorized unless current_user
     twitter = TwitterInterface.new(current_user)
     count = twitter.fetch_tweet_count(hashtag, at)
     last_tweet_id = twitter.last_tweet_id

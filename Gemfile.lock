@@ -59,6 +59,8 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     debug_inspector (0.0.2)
+    delorean (2.1.0)
+      chronic
     diff-lcs (1.2.5)
     domain_name (0.5.20161129)
       unf (>= 0.0.5, < 1.0.0)
@@ -266,6 +268,7 @@ DEPENDENCIES
   chartkick
   cocoon
   coffee-rails (~> 4.1.0)
+  delorean
   doorkeeper
   factory_girl_rails
   jbuilder (~> 2.0)
