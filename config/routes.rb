@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get '/user/hashtag', to: 'hashtag#user_hashtags', as: 'hashtag_index_user'
   get '/auth/twitter/callback', to: 'home#callback'
   get '/auth/failure', to: 'home#failure'
+
+  mount BattleHashtagAPI, at: '/api'
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

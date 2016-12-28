@@ -54,6 +54,15 @@ gem "chartkick"
 # Nested charts
 gem "cocoon"
 
+# APIs
+gem 'grape'
+gem 'grape-entity'
+gem 'grape-swagger'
+gem 'grape-swagger-ui'
+gem 'grape-swagger-entity'
+gem 'grape-swagger-rails'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
