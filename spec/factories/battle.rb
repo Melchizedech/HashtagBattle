@@ -8,8 +8,8 @@ FactoryGirl.define do
         hashtag_count 5
       end
 
-      after(:build) do |battle, evaluator|
-        build_list(:hashtag, evaluator.hashtag_count, battles: [battle])
+      before(:save) do |battle, evaluator|
+        create_list(:hashtag, evaluator.hashtag_count, battles: [])
       end
     end
   end
