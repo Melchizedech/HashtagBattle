@@ -4,6 +4,8 @@
 
 HashtagBattle allows anyone to visualize the competitivity of 2 to 5 hashtags in the time.
 If you sign in with Twitter, you're allowed to create Battles and update those counts.
+API is accessible at /api/v1
+Swagger Documentation is accessible at /api/v1/swagger_doc
 
 * Ruby version : tested on ruby 2.3.3p222
 
@@ -11,7 +13,7 @@ If you sign in with Twitter, you're allowed to create Battles and update those c
 
 * Configuration : run with environment variables TWITTER_KEY=your_app_key and TWITTER_SECRET=your_app_secret_key 
 
-* Database creation/initialization : using PostgreSQL - just run rake db:create, that's all
+* Database creation/initialization : using PostgreSQL - just run rake db:setup, that's all
 
 * How to run the test suite : just run 'bundle exec rspec'
 

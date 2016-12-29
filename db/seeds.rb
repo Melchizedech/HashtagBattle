@@ -5,3 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Doorkeeper::Application.create(name: 'HashtagBattleAPI', redirect_uri: 'urn:ietf:wg:oauth:2.0:oob')

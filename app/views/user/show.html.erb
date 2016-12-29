@@ -1,0 +1,23 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Twitter ID</th>
+    <th>Twitter Name</th>
+    <th>API Access Token</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @user.sid %></td>
+      <td><%= @user.name %></td>
+      <td>
+        <% if @access_token %>
+          <%= @access_token.try(:token) %>
+        <% else %>
+          <%= link_to('Generate an API Access Token', generate_access_token_path) %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+

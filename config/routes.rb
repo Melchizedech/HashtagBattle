@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+  # You can have the root of your site routed with "root"
+
   use_doorkeeper
 
-  # You can have the root of your site routed with "root"
   root 'home#index'
 
   get '/logout', to: 'home#logout'
@@ -12,11 +13,18 @@ Rails.application.routes.draw do
   resources :hashtag
   get '/battle/:battle_id/chartdata', to: 'battle#pie_chart_data', as: 'pie_chart_data'
   get '/battle/:battle_id/stackedlinechartdata', to: 'battle#stacked_line_chart_data', as: 'stacked_line_chart_data'
-  get '/user/battle', to: 'battle#user_battles', as: 'battle_index_user'
+
+
+  get '/me', to: 'user#show', as: 'show_user'
+  get '/me/battle', to: 'battle#user_battles', as: 'battle_index_user'
+  get '/me/hashtag', to: 'hashtag#user_hashtags', as: 'hashtag_index_user'
+
+  get '/me/access_token', to: 'user#generate_access_token', as: 'generate_access_token'
 
   get '/hashtag/:hashtag_id/evolutionchartdata', to: 'hashtag#evolution_chart_data', as: 'evolution_chart_data'
   get '/hashtag/:id/update_count', to: 'hashtag#update_count', as: 'update_count'
-  get '/user/hashtag', to: 'hashtag#user_hashtags', as: 'hashtag_index_user'
+
+
   get '/auth/twitter/callback', to: 'home#callback'
   get '/auth/failure', to: 'home#failure'
 
