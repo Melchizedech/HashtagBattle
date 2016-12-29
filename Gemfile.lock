@@ -308,6 +308,9 @@ GEM
       hashdiff
     whenever (0.9.7)
       chronic (>= 0.6.3)
+    wine_bouncer (1.0.1)
+      doorkeeper (>= 1.4, < 4.3)
+      grape (~> 0.10, < 1.0)
 
 PLATFORMS
   ruby
@@ -349,6 +352,7 @@ DEPENDENCIES
   web-console (~> 2.0)
   webmock
   whenever
+  wine_bouncer
 
 BUNDLED WITH
    1.13.6

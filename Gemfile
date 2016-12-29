@@ -41,6 +41,7 @@ gem 'oauth2'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'twitter'
+gem 'wine_bouncer'
 
 # Heroku
 gem 'rails_12factor', group: :production
