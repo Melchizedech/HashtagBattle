@@ -1,14 +1,15 @@
 language: ruby
 rvm:
- - 2.2
-
-bundler_args: --without development
+- 2.2
+bundler_args: "--without development"
 cache: bundler
-
 services:
-  - postgresql
-
+- postgresql
 before_script:
-  - cp config/database.yml.travis config/database.yml
-  - psql -c 'create database travis_ci_test;' -U postgres
-
+- cp config/database.yml.travis config/database.yml
+- psql -c 'create database travis_ci_test;' -U postgres
+deploy:
+  provider: heroku
+  app: poc-hashtagbattle
+  api_key:
+    secure: Rse3fF39McdspQvsfAIWVgXZd713MPwroEnd1NR3m1RETtrrRRnA0Ecva88fDz3j/1MK+Lhc+42UD9C1Fze5KwdMxm/KiPQmffOOn4llicLvxW+L8gHjgZeFobwhDEHDqzRQznXzDmzry2gANqUAO0GInYb2wCX35qhU0ReMpjMT+Mfo7vG2lxGWB6g7dmdMa28ad9hMssBifS/eJiOZqbJdgCPXbWkfcFx2ogOCSbtE1xUgb1fE67xuGoCMxgu3Lg0r8tgNJbsOjk1Nu8AdshuMPtwuMh0ebCRqywsgUEI5jQ8VLXVmillylNxtB5vwuAOOAdIat4psh+Pd2U4fnTqymogkf+1qHJWnsE2wuKa9f12p/Ahf2wVzYYYrkZvob+cUeyOpLqVy74XehVg4fxBX9rugJcBci2sOL/xkT10kySPphrJ0/aqj8ai4zguwLGn680ZeFcx1lGuNs1eojKUbPMEaz6e1tKXgeuw+1OIz1lrhn8dDQqeaQQXyk5+9AELdvdBv4Ndy6VopXHMaRE4E1AKIr7HR59UMFC1ihBCAChfCgxVtDMGpVKAni620HFIJC6T0miB0VxsNcoebc/qmQuWit8kOKZz+Dou/if2m0XRi/UskwQhLkgJnNLY5ame+rUYBxHXmuwwW8SKWYo2YvghGyX0BeXRoyIZj8UE=
