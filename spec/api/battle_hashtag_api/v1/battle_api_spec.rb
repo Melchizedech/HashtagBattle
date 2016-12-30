@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe BattleHashtagAPI::V1::BattleAPI do
+RSpec.describe V1::BattleAPI do
   describe "GET /api/v1/battles" do
     it "returns an empty array of battles" do
       get "/api/v1/battles"
