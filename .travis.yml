@@ -3,3 +3,11 @@ rvm:
  - 2.2
 
 bundler_args: --without development
+
+services:
+  - postgresql
+
+before_script:
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database travis_ci_test;' -U postgres
+
